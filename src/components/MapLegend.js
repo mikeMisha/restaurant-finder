@@ -13,7 +13,7 @@ const MapLegend = () => {
             height="25"
             width="25"
           />
-          <div className={`text-${i === 0 ? 'red' : 'green'}-500`}>
+          <div className={`${i === 0 ? 'text-red-500' : 'text-green-500'}`}>
             {i === 0 ? 'N/A' : price.slice(0, i)}
           </div>
         </div>
@@ -22,7 +22,7 @@ const MapLegend = () => {
     return items;
   };
   return (
-    <div className="block py-2 px-4 border-2 w-[250px] bg-gray-600 rounded-lg border-blue-600 absolute z-10 right-5 top-3">
+    <div className="block py-2 px-4 border-1 w-[250px] bg-gray-600 rounded-lg border-blue-600 absolute z-10 right-5 top-3">
       <div className="flex justify-between"> {renderLegendItems()}</div>
     </div>
   );

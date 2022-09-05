@@ -115,25 +115,22 @@ function App() {
       {resultData.length > 0 && <MapLegend />}
       <div className="max-h-screen w-1/3 z-10 p-3 absolute box-border flex flex-col min-w-[300px] max-w-lg">
         <Search onSearchSubmit={onSearchSubmit} />
-        {isSidebarOpen && (
-          <Sidebar>
-            {selectedMarkerData && (
-              <>
-                <PlaceBanner
-                  data={selectedMarkerData}
-                  onCloseSidebar={() => setIsSidebarOpen(false)}
-                />
-                {selectedMarkerData.reviews && (
-                  <SidebarSection title="Reviews">
-                    <PlaceReviews reviews={selectedMarkerData.reviews} />
-                  </SidebarSection>
-                )}
-              </>
-            )}
-          </Sidebar>
-        )}
+        <Sidebar isSidebarOpen={isSidebarOpen}>
+          {selectedMarkerData && (
+            <>
+              <PlaceBanner
+                data={selectedMarkerData}
+                onCloseSidebar={() => setIsSidebarOpen(false)}
+              />
+              {selectedMarkerData.reviews && (
+                <SidebarSection title="Reviews">
+                  <PlaceReviews reviews={selectedMarkerData.reviews} />
+                </SidebarSection>
+              )}
+            </>
+          )}
+        </Sidebar>
       </div>
-
       <Map
         resultData={resultData}
         handleApiLoaded={handleApiLoaded}

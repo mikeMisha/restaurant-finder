@@ -1,24 +1,20 @@
-import React, { Children } from 'react';
+import React, { useState } from 'react';
 
 function SidebarSection({ title, children }) {
+  const [isSectionOpen, setIsSectionOpen] = useState(true);
   return (
-    <div
-      id="accordion-open"
-      data-accordion="open"
-      className="border rounded-xl bg-gray-100"
-    >
-      <h2 id="accordion-open-heading-1">
+    <div className="border rounded-xl bg-gray-100">
+      <h2>
         <button
           type="button"
           className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500  rounded-xl  border-gray-700 dark:text-gray-500 text-gray-600 bg-gray-100"
-          data-accordion-target="#accordion-open-body-1"
-          aria-expanded="true"
-          aria-controls="accordion-open-body-1"
+          onClick={() => setIsSectionOpen(!isSectionOpen)}
         >
           <span className="flex items-center">{title}</span>
           <svg
-            data-accordion-icon
-            className="w-6 h-6 rotate-180 shrink-0"
+            className={`w-6 h-6 shrink-0 transition duration-200  ${
+              isSectionOpen && 'rotate-180'
+            }`}
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -31,13 +27,7 @@ function SidebarSection({ title, children }) {
           </svg>
         </button>
       </h2>
-      <div
-        id="accordion-open-body-1"
-        className="hidden"
-        aria-labelledby="accordion-open-heading-1"
-      >
-        {children}
-      </div>
+      <div>{isSectionOpen && children}</div>
     </div>
   );
 }

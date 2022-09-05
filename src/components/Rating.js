@@ -6,9 +6,9 @@ function Rating({ rating, noText }) {
     for (let i = 1; i <= 5; i++) {
       stars.push(
         <svg
-          aria-hidden="true"
-          className={`w-5 h-5 text-${i <= rating ? 'yellow' : 'gray'}-300`}
-          fill="currentColor"
+          className={`w-5 h-5 ${
+            i <= rating ? 'fill-yellow-300' : 'fill-gray-300'
+          }`}
           viewBox="0 0 20 20"
           key={i}
           xmlns="http://www.w3.org/2000/svg"
