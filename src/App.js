@@ -102,9 +102,11 @@ function App() {
         placeId: data.place_id,
         fields: ['review', 'url'],
       },
-      (res) => {
-        setSelectedMarkerData({ ...data, ...res });
-        setIsSidebarOpen(true);
+      (res, status) => {
+        if (status === 'OK') {
+          setSelectedMarkerData({ ...data, ...res });
+          setIsSidebarOpen(true);
+        }
       }
     );
   };
