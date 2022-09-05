@@ -10,10 +10,14 @@ const MapLegend = () => {
           <img
             src={`./img/price-icons/price-${i === 0 ? 'none' : i}.svg`}
             alt=""
-            height="25"
-            width="25"
+            height="20"
+            width="20"
           />
-          <div className={`${i === 0 ? 'text-red-500' : 'text-green-500'}`}>
+          <div
+            className={`${
+              i === 0 ? 'text-red-500' : 'text-green-500 md:border-b'
+            } `}
+          >
             {i === 0 ? 'N/A' : price.slice(0, i)}
           </div>
         </div>
@@ -22,8 +26,11 @@ const MapLegend = () => {
     return items;
   };
   return (
-    <div className="block py-2 px-4 border-1 w-[250px] bg-gray-600 rounded-lg border-blue-600 absolute z-10 right-5 top-3">
-      <div className="flex justify-between"> {renderLegendItems()}</div>
+    <div className="block py-2 px-4 border-1 md:w-[200px] bg-gray-600 rounded-lg border-blue-600 absolute z-10 left-2 bottom-1 md:bottom-auto md:left-auto md:right-2 md:top-3 ">
+      <div className="flex justify-between  md:flex-row flex-col">
+        {' '}
+        {renderLegendItems()}
+      </div>
     </div>
   );
 };

@@ -113,7 +113,7 @@ function App() {
     <>
       {isLoading && <LoadingScreen />}
       {resultData.length > 0 && <MapLegend />}
-      <div className="max-h-screen w-1/3 z-10 p-3 absolute box-border flex flex-col min-w-[300px] max-w-lg">
+      <div className="max-h-screen w-full md:1/3 z-10 p-3 absolute box-border flex flex-col min-w-[300px] max-w-lg">
         <Search onSearchSubmit={onSearchSubmit} />
         <Sidebar isSidebarOpen={isSidebarOpen}>
           {selectedMarkerData && (
