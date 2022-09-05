@@ -1,5 +1,5 @@
 # Restaurant Finder
 
-This App finds restuarants in specified location and dispays them based on price. Each resurant can be clicked to show location and reviews.
+This App finds restaurants in specified location and displays them based on price on a map. Markers can be clicked to show location and reviews.
 
 Built with React, tailwindCSS, and Google maps API.

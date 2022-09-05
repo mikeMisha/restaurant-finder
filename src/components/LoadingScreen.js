@@ -2,7 +2,7 @@ import React from 'react';
 
 function LoadingScreen() {
   return (
-    <div className=" overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 w-full md:inset-0 h-modal md:h-full bg-opacity-80 bg-gray-800 flex items-center justify-center">
+    <div className=" flex items-center justify-center fixed top-0 right-0 left-0 z-50 w-full  h-full bg-opacity-80 bg-gray-800 ">
       <div role="status">
         <svg
           className="inline mr-2 w-14 h-14 text-gray-200 animate-spin fill-blue-600"
