@@ -7,52 +7,30 @@ import SidebarTab from './layout/Sidebar/SidebarTab';
 import PlaceReviews from './layout/Sidebar/PlaceReviews';
 import LoadingScreen from './components/LoadingScreen';
 import MapLegend from './components/MapLegend';
-
+import useNearbyApi from './hooks/useNearbySearchApi';
 function App() {
   const [maps, setMaps] = useState(null);
   const [map, setMap] = useState(null);
   const [selectedMarkerData, setSelectedMarkerData] = useState(null);
-  const [resultData, setResultData] = useState([]);
   const [circle, setCircle] = useState(null);
   const [currLoc, setCurrLoc] = useState(null);
   const [searchKeyword, setSearchKeyword] = useState('');
-  const [isLoading, setIsLoading] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isAppLoading, setIsAppLoading] = useState(true);
+  const { isApiLoading, resultData } = useNearbyApi({
+    maps,
+    map,
+    currLoc,
+    searchKeyword,
+    circle,
+  });
 
   useEffect(() => {
-    if (!maps || !currLoc) return;
-    const collectResults = [];
-    const service = new maps.places.PlacesService(map);
-    service.nearbySearch(
-      {
-        location: currLoc,
-        keyword: searchKeyword,
-        radius: 1000,
-        type: 'restaurant',
-      },
-      (results, status, pagination) => {
-        if (status !== 'OK' || !results) {
-          setIsLoading(false);
-          alert('Location does not exist or results not found!');
-          return;
-        }
-        const timer = setTimeout(() => {
-          setupLocation(collectResults);
-        }, 5000);
-
-        collectResults.push(...results);
-        if (pagination && pagination.hasNextPage) {
-          pagination.nextPage();
-        } else {
-          clearTimeout(timer);
-          setupLocation(collectResults);
-        }
-      }
-    );
-  }, [currLoc, maps]);
+    setIsAppLoading(isApiLoading);
+  }, [isApiLoading]);
 
   const handleApiLoaded = (m, ms) => {
-    setIsLoading(false);
+    setIsAppLoading(false);
     setMap(m);
     setMaps(ms);
     setCircle(
@@ -72,20 +50,11 @@ function App() {
     );
   };
 
-  const setupLocation = (collectResults) => {
-    setResultData(collectResults);
-    map.panTo(currLoc);
-    map.setZoom(15);
-    circle.setCenter(currLoc);
-    setIsLoading(false);
-  };
-
   const onSearchSubmit = (keyword, location) => {
-    setIsLoading(true);
     var geocoder = new maps.Geocoder();
     geocoder.geocode({ address: location }, (results, status) => {
       if (status === 'ZERO_RESULTS') {
-        setIsLoading(false);
+        setIsAppLoading(false);
         alert(`No results for: "${location}"`);
         return;
       }
@@ -113,7 +82,7 @@ function App() {
 
   return (
     <>
-      {isLoading && <LoadingScreen />}
+      {isAppLoading && <LoadingScreen />}
       {resultData.length > 0 && <MapLegend />}
       <div className="max-h-screen  w-full z-10 p-3 absolute box-border flex flex-col min-w-[300px] sm:max-w-md">
         <Search onSearchSubmit={onSearchSubmit} />

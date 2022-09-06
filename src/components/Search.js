@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const Search = ({ onSearchSubmit }) => {
   const [term, setTerm] = useState('');
@@ -18,7 +18,7 @@ const Search = ({ onSearchSubmit }) => {
             type="text"
             id="keyword"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 max-w-sm"
-            placeholder="Keyword"
+            placeholder="Keyword (optional)"
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
           />
