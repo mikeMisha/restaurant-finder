@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import Review from '../../components/Review';
-import axios from 'axios';
+
 const PlaceReviews = ({ reviews }) => {
   if (!reviews) return;
   return (

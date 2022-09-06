@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 
 function SidebarTab({ title, children }) {
-  const [isSectionOpen, setIsSectionOpen] = useState(true);
+  const [isTabOpen, setIsTabOpen] = useState(true);
   return (
     <div className="border rounded-xl bg-gray-100">
       <h2>
         <button
           type="button"
-          className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500  rounded-xl  border-gray-700 dark:text-gray-500 text-gray-600 bg-gray-100"
-          onClick={() => setIsSectionOpen(!isSectionOpen)}
+          className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500  rounded-xl  border-gray-700 text-gray-600 bg-gray-100"
+          onClick={() => setIsTabOpen(!isTabOpen)}
         >
           <span className="flex items-center">{title}</span>
           <svg
             className={`w-6 h-6 shrink-0 transition duration-200  ${
-              isSectionOpen && 'rotate-180'
+              isTabOpen && 'rotate-180'
             }`}
             fill="currentColor"
             viewBox="0 0 20 20"
@@ -27,7 +27,7 @@ function SidebarTab({ title, children }) {
           </svg>
         </button>
       </h2>
-      <div>{isSectionOpen && children}</div>
+      <div>{isTabOpen && children}</div>
     </div>
   );
 }
