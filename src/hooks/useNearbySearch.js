@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export default function useNearbyApi({
+export default function useNearbySearch({
   maps,
   map,
   currLoc,

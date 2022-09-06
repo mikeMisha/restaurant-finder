@@ -7,7 +7,7 @@ import SidebarTab from './layout/Sidebar/SidebarTab';
 import PlaceReviews from './layout/Sidebar/PlaceReviews';
 import LoadingScreen from './components/LoadingScreen';
 import MapLegend from './components/MapLegend';
-import useNearbyApi from './hooks/useNearbyApi';
+import useNearbySearch from './hooks/useNearbySearch';
 function App() {
   const [maps, setMaps] = useState(null);
   const [map, setMap] = useState(null);
@@ -17,7 +17,7 @@ function App() {
   const [searchKeyword, setSearchKeyword] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isAppLoading, setIsAppLoading] = useState(true);
-  const { isApiLoading, resultData } = useNearbyApi({
+  const { isApiLoading, resultData } = useNearbySearch({
     maps,
     map,
     currLoc,
