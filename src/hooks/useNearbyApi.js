@@ -41,6 +41,7 @@ export default function useNearbyApi({
         }
       }
     );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currLoc, maps]);
 
   const setupLocation = (collectResults) => {
