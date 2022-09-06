@@ -7,7 +7,7 @@ import SidebarTab from './layout/Sidebar/SidebarTab';
 import PlaceReviews from './layout/Sidebar/PlaceReviews';
 import LoadingScreen from './components/LoadingScreen';
 import MapLegend from './components/MapLegend';
-import useNearbyApi from './hooks/useNearbySearchApi';
+import useNearbyApi from './hooks/useNearbyApi';
 function App() {
   const [maps, setMaps] = useState(null);
   const [map, setMap] = useState(null);
