@@ -3,7 +3,7 @@ import Search from './components/Search';
 import Sidebar from './layout/Sidebar';
 import React, { useState, useEffect } from 'react';
 import PlaceBanner from './layout/Sidebar/PlaceBanner';
-import SidebarSection from './layout/Sidebar/SidebarSection';
+import SidebarTab from './layout/Sidebar/SidebarTab';
 import PlaceReviews from './layout/Sidebar/PlaceReviews';
 import LoadingScreen from './components/LoadingScreen';
 import MapLegend from './components/MapLegend';
@@ -115,7 +115,7 @@ function App() {
     <>
       {isLoading && <LoadingScreen />}
       {resultData.length > 0 && <MapLegend />}
-      <div className="max-h-screen w-full md:1/3 z-10 p-3 absolute box-border flex flex-col min-w-[300px] max-w-lg">
+      <div className="max-h-screen  w-full z-10 p-3 absolute box-border flex flex-col min-w-[300px] sm:max-w-md">
         <Search onSearchSubmit={onSearchSubmit} />
         <Sidebar isSidebarOpen={isSidebarOpen}>
           {selectedMarkerData && (
@@ -125,9 +125,9 @@ function App() {
                 onCloseSidebar={() => setIsSidebarOpen(false)}
               />
               {selectedMarkerData.reviews && (
-                <SidebarSection title="Reviews">
+                <SidebarTab title="Reviews">
                   <PlaceReviews reviews={selectedMarkerData.reviews} />
-                </SidebarSection>
+                </SidebarTab>
               )}
             </>
           )}

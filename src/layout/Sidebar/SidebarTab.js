@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function SidebarSection({ title, children }) {
+function SidebarTab({ title, children }) {
   const [isSectionOpen, setIsSectionOpen] = useState(true);
   return (
     <div className="border rounded-xl bg-gray-100">
@@ -32,4 +32,4 @@ function SidebarSection({ title, children }) {
   );
 }
 
-export default SidebarSection;
+export default SidebarTab;
