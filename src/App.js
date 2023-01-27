@@ -51,16 +51,20 @@ function App() {
   };
 
   const onSearchSubmit = (keyword, location) => {
+    setIsAppLoading(true);
     var geocoder = new maps.Geocoder();
     geocoder.geocode({ address: location }, (results, status) => {
       if (status === 'ZERO_RESULTS') {
         setIsAppLoading(false);
         alert(`No results for: "${location}"`);
         return;
+      } else if (status === 'OK') {
+        let locationCord = results[0].geometry.location;
+        setCurrLoc(locationCord);
+        setSearchKeyword(keyword);
+      } else {
+        setIsAppLoading(false);
       }
-      let locationCord = results[0].geometry.location;
-      setCurrLoc(locationCord);
-      setSearchKeyword(keyword);
     });
   };
 
